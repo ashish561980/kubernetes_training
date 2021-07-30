@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-pv-[replace-this-with-your-namespace]
+  labels:
+    type: local
+spec:
+  storageClassName: database-[replace-this-with-your-namespace]
+  capacity:
+    storage: 3Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/var/lib/mysql/[replace-this-with-your-namespace]"
