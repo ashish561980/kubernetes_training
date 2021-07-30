@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: pages
+    tier: service
+  name: pages
+spec:
+  containers:
+    - image: dellcloud/pages:1.0
+      imagePullPolicy: IfNotPresent
+      name: pages

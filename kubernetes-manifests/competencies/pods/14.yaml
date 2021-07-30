@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: alpine
+  name: alpine
+spec:
+  volumes:
+    - name: log-date-vol
+      emptyDir: {}
+  containers:
+  - image: alpine
+    name: alpine
+    imagePullPolicy: IfNotPresent
+    command: ["/bin/sh"]
+    args: ["-c", "while true; do date >> /etc/kal-directory/date-file.txt; sleep 5; done"]
+    volumeMounts:
+      - name: log-date-vol
+        mountPath: /etc/kal-directory
+  - image: nginx
+    name: nginx
+    imagePullPolicy: IfNotPresent
+    volumeMounts:
+      - name: log-date-vol
+        mountPath: /etc/kal-directory
